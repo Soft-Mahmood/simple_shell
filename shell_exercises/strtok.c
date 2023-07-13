@@ -1,11 +1,11 @@
-#include <strings.h>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv)
+int main(int argc, char **argv)
 {
 	int j;
-	char *str, *str, *token;
+	char *str, *token;
 
 	if (argc != 4)
 	{
@@ -13,7 +13,7 @@ int main(int argc, char *argv)
 		exit (EXIT_FAILURE);
 	}
 
-	for (j = 1; str = argv[1]; j++; str = NULL)
+	for (j = 1, str = argv[1]; j++, str = NULL;)
 	{
 		token = strtok(str, argv[2]);
 		if (token == NULL)
