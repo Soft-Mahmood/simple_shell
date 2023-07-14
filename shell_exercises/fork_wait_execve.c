@@ -21,7 +21,7 @@ int main(void)
 
 	/*prints parent pid*/
 	parent_pid = getpid();
-	printf("Before children '%u\n'", parent_pid);
+	printf("Before children %u\n", parent_pid);
 
 	/*loop for children*/
 	for (j = 1; j < 6; j++)
@@ -34,8 +34,8 @@ int main(void)
 		}
 		else if (child_pid == 0)
 		{
-			printf("Child '%i\n'", j);
-			printf("PID is: '%u\n'",child_pid);
+			printf("Child %i\n", j);
+			printf("PID is: %u\n",getpid());
 			
 			/*executing the program*/
 			if (execve(argv[0], argv, NULL) == -1)
@@ -43,12 +43,12 @@ int main(void)
 				perror("Error:");
 				return (EXIT_FAILURE);
 			}
-			printf("child '%i\n' done", j);
+			printf("child %i\n done", j);
 		}
 		else 
 		{
 			wait(&status);
-			printf("Going to the next child");
+			printf("Going to the next child\n");
 		}
 	}
 	return (EXIT_SUCCESS);
