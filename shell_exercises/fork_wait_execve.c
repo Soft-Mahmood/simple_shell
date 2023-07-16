@@ -17,7 +17,7 @@ int main(void)
 	int j;
 	pid_t child_pid;
 	pid_t parent_pid;
-	char *argv[] = {"/tmp/ls", "-1", "/usr/", NULL};
+	char *argv[] = {"/tmp/ls", "-1", NULL};
 
 	/*prints parent pid*/
 	parent_pid = getpid();
