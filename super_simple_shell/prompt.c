@@ -1,22 +1,49 @@
 #include "shell.h"
 
 /**
- * the function prompt.c 
- * writes $ on the screen and waits for the user to enter a command
- * returns a pointer to the string of characters in the command.
- * returns 0 on failure.
+ * prompt prompts the user and executes their commands
+ * @en are the environmental variables
+ * Returns 0 on success
  */
-char prompt(void)
+int prompt(char **en)
 {
-	char *buffer = malloc(sizeof(char));
-	size_t len = 1024;
+	list_t *env;
+	size_t i = 0, n = 0;
+	int command_line_no = 0, exit_stat = 0;
+	char *command, *n_command, **token;
 
-	while (1)
-	{
-		printf("$ ");
-		getline(&buffer, &len, stdin);
+	env = env_linked_list(en);
+	do {
+		command_line_no++;
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "$ ", 2);
+		else
+			non_interactive(env);
+		signal(SIGINT, ctrl_c); /* makes ctrl+c not work */
+		command = NULL;
 
-		return (buffer);
-	}
-	return (0);
+		i = 0; /* reset vars each time loop runs */
+		i = get_line(&command); /* read user's cmd in stdin */
+		ctrl_D(i, command, env); /* exits shell if ctrl-D */
+		n_command = command;
+		command = ignore_space(command);
+		n = 0;
+		while (command[n] != '\n') /* replace get_line's \n with \0 */
+			n++;
+		command[n] = '\0';
+		if (command[0] == '\0') /* reprompt if user hits enter only */
+		{
+			free(n_command);
+			continue;
+		}
+		token = NULL;
+		token = _str_tok(command, " "); /*token user cmd*/
+		if (n_command != NULL)
+			free(n_command);
+		exit_stat = built_in(token, env, command_line_no, NULL);
+		if (exit_stat)
+			continue;
+		exit_stat = _execve(token, env, command_line_no);
+	} while (1); /* keep on repeating till user exits shell */
+	return (exit_stat);
 }
