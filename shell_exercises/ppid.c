@@ -5,6 +5,7 @@
 /**
  * ppid gets the PId of the parent process.
  * always successful
+ * returns 0
  */
 int main(void)
 {
