@@ -15,7 +15,7 @@ int interactive(info_t *info)
  * is_delim - checks if character is a delimeter
  * @c: the char to check
  * @delim: the delimeter string
- * Return: 1 if true, 0 if false 
+ * Return: 1 if true, 0 if false
  */
 int is_ delim(char c, char *delim)
 {
