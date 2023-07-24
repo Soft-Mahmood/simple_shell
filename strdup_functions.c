@@ -1,30 +1,35 @@
 #include "shell.h"
 
 /**
- * get_env - finds and returns a copy of the requested environmental variable
- * @str: string to store it in
- * @env: entire set of environmental variables
- * Return: copy of requested environmental variable
+ * _strdup - returns a pointer to a newly allocated space in memory,
+ * which contains a copy of the string given as a parameter
+ * @str: string to duplicate
+ * Return: pointer to duplicated string in allocated memory
  */
-char *get_env(char *str, list_t *env)
+char *_strdup(char *str)
 {
-	int j = 0, cs = 0;
+	char *duplicate_str;
+	int i, len = 0;
 
-	while (env != NULL)
+	if (str == NULL) /* validate str input */
+		return (NULL);
+
+	while (*(str + len))
+		len++;
+	len++; /* add null terminator to length */
+
+	duplicate_str = malloc(sizeof(char) * len); /* allocate memory */
+	if (duplicate_str == NULL)
+		return (NULL);
+
+	i = 0;
+	while (i < len)
 	{
-		j = 0;
-		while ((env->env_var_str)[j] == str[j]) /* find desired env variable */
-			j++;
-		if (str[j] == '\0' && (env->env_var_str)[j] == '=')
-			break;
-		env = env->next;
+		*(duplicate_str + i) = *(str + i);
+		i++;
 	}
 
-	while (str[cs] != '\0') /* find how many bytes in env variable title */
-		cs++;
-	cs++; /*counts 1 more for = sign*/
-	return (c_strdup(env->env_var_str, cs));
-	/* make a copy of variable w/o title */
+	return (duplicate_str);
 }
 
 /**
@@ -44,6 +49,7 @@ char *c_strdup(char *str, int cs)
 	/* calculate len + null terminator to malloc */
 	while (*(str + len))
 		len++;
+
 	len++;
 
 	/* allocate memory but exclude environmental variable title (PATH) */
@@ -57,5 +63,6 @@ char *c_strdup(char *str, int cs)
 		*(duplicate_str + i) = *(str + cs + i);
 		i++;
 	}
+
 	return (duplicate_str);
 }

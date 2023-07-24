@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * prompt prompts the user and executes their commands
- * @en are the environmental variables
- * Returns 0 on success
+ * prompt - prompts the user and executes their commands
+ * @en: are the environmental variables
+ * Return: 0 on success
  */
 int prompt(char **en)
 {

@@ -14,9 +14,9 @@
 
 
 /**
- * struct list is a linked list for env variables
- * @env_var_str holds env variables string
- * next points to the next node
+ * struct list - is a linked list for env variables
+ * @env_var_str: holds env variables string
+ * @next: points to the next node
  */
 typedef struct list
 {
@@ -54,7 +54,7 @@ char **c_str_tok(char *str, char *delm);
 int c_t_size(char *str, char delm);
 char *c_strcat(char *dest, char *src);
 int c_setenv(list_t **env, char *name, char *dir);
-void cd_only(list_t *env, char *current);
+void cd_home(list_t *env, char *current);
 int cd_execute(list_t *env, char *current, char *dir, char *str, int num);
 int _cd(char **str, list_t *env, int num);
 int _execve(char **s, list_t *env, int num);

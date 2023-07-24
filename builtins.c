@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * ctrl_c ignores the Ctrl+c and prompts again
- * @n takes in int from signal
+ * ctrl_c - ignores the Ctrl+c and prompts again
+ * @n: takes in int from signal
  */
 void ctrl_c(int n)
 {
@@ -18,11 +18,11 @@ void ctrl_c(int n)
  */
 void ctrl_D(int i, char *command, list_t *env)
 {
-	if (i == 0) /* handles Ctrl+D */
+	if (i == 0)
 	{
-		free(command); /* exit with newline if in shell */
+		free(command);
 		free_linked_list(env);
-		if (isatty(STDIN_FILENO))/* ctrl+d prints newline */
+		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "\n", 1);
 		exit(0);
 	}

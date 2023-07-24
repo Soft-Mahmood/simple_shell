@@ -56,6 +56,7 @@ int _unsetenv(list_t **env, char **str)
 	}
 	return (0);
 }
+
 /**
  * _setenv - create or modify existing
  * environmental variable in linked list
@@ -96,5 +97,29 @@ int _setenv(list_t **env, char **str)
 	}
 	free(cat);
 	free_double_ptr(str);
+	return (0);
+}
+
+int c_setenv(list_t **env, char *name, char *dir)
+{
+	int index = 0, j = 0;
+	char *cat;
+	list_t *holder;
+
+	cat = _strdup(name); /* create new concatenated string */
+	cat = _strcat(cat, "=");
+	cat = _strcat(cat, dir);
+	index = find_env(*env, name); /* get idx to env var in linked list */
+
+	/* traverse to idx, free node data, reassign data */
+	holder = *env;
+	while (j < index)
+	{
+		holder = holder->next;
+		j++;
+	}
+	free(holder->env_var_str);
+	holder->env_var_str = _strdup(cat);
+	free(cat);
 	return (0);
 }

@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * get_line stores into a malloced buffer the user's command into shell
- * @str is the buffer
- * returns the number of characters read
+ * get_line - stores into a malloced buffer the user's command into shell
+ * @str: is the buffer
+ * Return: the number of characters read
  */
 size_t get_line(char **str)
 {
@@ -18,8 +18,7 @@ size_t get_line(char **str)
 			return (-1);
 
 		buffer[i] = '\0'; /* terminate buffer with \0 to use with _strcat */
-
-		n = 0; 
+		n = 0;
 		/* last loop if \n is found in the stdin read */
 		while (buffer[n] != '\0')
 		{
