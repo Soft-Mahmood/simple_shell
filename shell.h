@@ -11,7 +11,8 @@
 #include <strings.h>
 #include <signal.h>
 #include <fcntl.h>
-
+#include <wait.h>
+#include <dirent.h>
 
 /**
  * struct list - is a linked list for env variables
