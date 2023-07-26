@@ -45,12 +45,12 @@ int _cd(char **str, list_t *env, int num)
 	}
 	else /* Usage: cd */
 		cd_home(env, current);
-	free_double_ptr(str); /* frees user input */
+	/*free_double_ptr(str); frees user input */
 	return (exit_stat);
 }
 
 /**
- * cd_execute - executes the cd
+ * cd_execute - executes changing the directory
  * @env: bring in environmental linked list to update PATH and OLDPWD
  * @current: bring in current working directotry
  * @dir: bring in directory path to change to

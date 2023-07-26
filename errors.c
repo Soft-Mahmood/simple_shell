@@ -41,7 +41,8 @@ void not_found(char *str, int c_n, list_t *env)
 void cant_cd_to(char *str, int c_n, list_t *env)
 {
 	int count = 0;
-	char *shell, *num;
+	char *shell = malloc(sizeof(list_t));
+	char *num = malloc(sizeof(list_t));
 
 	shell = get_env("_", env);
 	while (shell[count] != '\0')
