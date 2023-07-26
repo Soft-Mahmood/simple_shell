@@ -100,6 +100,13 @@ int _setenv(list_t **env, char **str)
 	return (0);
 }
 
+/**
+ * c_setenv - custom _setenv by concatenating string first before setting
+ * @env: environmental variable linked list
+ * @name: environmental variable name (e.g. "OLDPWD")
+ * @dir: directory path (e.g. "/home/vagrant/directory1")
+ * Return: 0 on success (e.g. "OLDPWD=/home/vagrant/directory1")
+ */
 int c_setenv(list_t **env, char *name, char *dir)
 {
 	int index = 0, j = 0;
